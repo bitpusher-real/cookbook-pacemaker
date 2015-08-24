@@ -25,6 +25,11 @@ when 'suse'
     pacemaker-mgmt pacemaker-mgmt-client
     xorg-x11-xauth xorg-x11-fonts
   )
+when 'ubuntu'
+  default[:pacemaker][:platform][:packages] = %w(pacemaker crmsh)
+  default[:pacemaker][:platform][:graphical_packages] = %w(
+    pacemaker-mgmt pacemaker-mgmt-client
+  )
 else
   Chef::Application.fatal! "FIXME: #{node.platform} platform not supported yet"
   return
